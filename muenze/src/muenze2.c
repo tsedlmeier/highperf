@@ -19,8 +19,7 @@ void print(int *a)
 int main(void)
 {
 	int n = 4;	//n vorletzte Stelle (y)
-    //for (size_t i = 0; i < N ; i++)
-	while(A[0] <= 6)
+    for (size_t i = 0; i < 2*N ; i++)
     {
 			print(A);
 			if(A[n+1]==1)
