@@ -1,0 +1,48 @@
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#define PREFIX 2
+
+// globals
+uint32_t A[PREFIX];
+int count;
+
+void write_file(uint32_t*  A, FILE* file)
+{
+    for (size_t i = 0; i < PREFIX; i++)
+    {
+        fprintf(file, "%d", A[i]);
+    }
+    fprintf(file, "\n");
+    return;
+
+}
+void rec(size_t j, FILE* file)
+{
+    if(j==PREFIX)
+    {
+        write_file(A, file);
+        return;
+    }
+    // Calculate PREFIX
+    for(size_t v = 0; v < 3; ++v)
+    {
+        A[j] = v;
+        rec(j+1, file);
+    }
+
+}
+
+int main(int argc, char* argv[])
+{
+    char path[20] = "prefix.txt";
+    FILE* fp = fopen(path, "w");
+    if(!fp){
+        perror("fopen");
+        return 1;
+    }
+    // Generate prefix and write to file
+    rec(0, fp);
+    fclose(fp);
+}

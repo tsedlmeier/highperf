@@ -1,0 +1,7 @@
+master:
+	gcc -Ofast -Wextra -Wall src/master_rec.c -o master
+worker:
+	gcc -Ofast -Wextra -Wall src/worker_rec.c -o worker
+debug:
+	gcc -g -Wextra -Wall src/worker_rec.c -o worker
+	gcc -g -Wextra -Wall src/master_rec.c -o master
