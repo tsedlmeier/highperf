@@ -11,34 +11,45 @@ void print(int *a)
 {
     for (size_t i = 0; i < sizeof(A)/sizeof(int) ; i++)
     {
+		if(a[i]==0) break;
         printf("%d ", a[i]);
-    }
-}
-void shift(int *a)
-{
-    for (size_t i = LEN; i > 0 ; i--)
-    {
-        if (a[i]==0) {
-            break;
-        }
-        a[i-1] = a[i];
     }
 }
 
 int main(void)
 {
-    int *y = &A[LEN-2];
-    int *z = &A[LEN-1];
-    for (size_t i = 0; i < N ; i++)
+	int n = 4;	//n vorletzte Stelle (y)
+    //for (size_t i = 0; i < N ; i++)
+	while(A[0] <= 6)
     {
-        print(A);
-        if( *z == 1 ) 
-        {
-            (*z)++; 
-            shift(A);
-        }
-        else {
-        }
-    printf("\n");
+			print(A);
+			if(A[n+1]==1)
+			{
+				A[n] = A[n] + 1; 
+				A[n+1] = 0;	
+				n--;
+			}
+			else
+			{
+				A[n] = A[n] + 1;
+        		//printf("A[n]=%d \n", A[n]);
+
+				int sum = 0;
+				for(int i=0; i<=n; i++)
+				{
+					sum += A[i];
+				}
+        		//printf("%d \n", sum);
+				
+				int j=n;
+				for(j=n+1; sum<LEN; j++)
+				{
+					A[j] = 1;	
+					sum++;
+				}
+				n = j-2;
+        		//printf("n=%d \n", n);
+			}
+			printf("\n");
     }
 }
